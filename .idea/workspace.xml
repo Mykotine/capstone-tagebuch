@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bf00654-b894-44ad-9266-463bf88b954e" name="Changes" comment="add backend">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="5bf00654-b894-44ad-9266-463bf88b954e" name="Changes" comment="add User, Notiz, Controller">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/Notiz/Notiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/Note/Note.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +37,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2HtqAlqYBe5Wy31QMYaVp8SVdK1" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -52,7 +62,8 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "ts.external.directory.path": "/Users/mykola/Documents/capstone-tagebuch/frontend/node_modules/typescript/lib"
   }
 }]]></component>
   <component name="RunManager" selected="Spring Boot.BackendApplication">
@@ -66,6 +77,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -75,7 +101,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669114585521</updated>
-      <workItem from="1669114586737" duration="3568000" />
+      <workItem from="1669114586737" duration="9706000" />
     </task>
     <task id="LOCAL-00001" summary="add backend">
       <created>1669114990146</created>
@@ -84,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669114990146</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add User, Notiz, Controller">
+      <created>1669118444012</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669118444012</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,6 +139,7 @@
       <path value="$PROJECT_DIR$/backend" />
     </ignored-roots>
     <MESSAGE value="add backend" />
-    <option name="LAST_COMMIT_MESSAGE" value="add backend" />
+    <MESSAGE value="add User, Notiz, Controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="add User, Notiz, Controller" />
   </component>
 </project>

@@ -1,23 +1,25 @@
 package com.example.backend;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 
 public class Controller {
+
     @GetMapping
-    public String getNotiz() {
-        return "das ist die erste Notiz in deinem Tagebuch.";
+    String getNote(){
+        return "this is my first Note!";
     }
 
-    @GetMapping("second")
-    public String getNotizOne() {
-        return "das ist die zweite Notiz.";
+
+    @PostMapping("addNote")
+    public String addNote(@RequestBody String note) {
+        return note;
     }
+
+
 
 }
