@@ -1,8 +1,8 @@
-package Note;
+package com.example.backend.note;
 
 import java.util.Date;
 
 public record Note(String id,
-                   String description,
+                   int description,
                    Date date) {
 }
