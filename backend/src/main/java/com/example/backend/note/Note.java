@@ -1,8 +1,11 @@
 package com.example.backend.note;
 
-import java.util.Date;
+import lombok.With;
+
+
+@With
 
 public record Note(String id,
-                   int description,
-                   Date date) {
+                   String text,
+                   String date) {
 }
