@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bf00654-b894-44ad-9266-463bf88b954e" name="Changes" comment="add IntegrationTest">
+    <list default="true" id="5bf00654-b894-44ad-9266-463bf88b954e" name="Changes" comment="add ci pipeline using github actions">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +158,7 @@
       <updated>1669114585521</updated>
       <workItem from="1669114586737" duration="35651000" />
       <workItem from="1669625378223" duration="339000" />
-      <workItem from="1669632172270" duration="1283000" />
+      <workItem from="1669632172270" duration="3866000" />
     </task>
     <task id="LOCAL-00001" summary="add backend">
       <created>1669114990146</created>
@@ -200,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669304227077</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add ci pipeline using github actions">
+      <created>1669634713426</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669634713426</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +226,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="addNote" />
                       </list>
                     </value>
                   </entry>
@@ -239,6 +248,7 @@
     <MESSAGE value="add PostMapping" />
     <MESSAGE value="add PutMapping" />
     <MESSAGE value="add IntegrationTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="add IntegrationTest" />
+    <MESSAGE value="add ci pipeline using github actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="add ci pipeline using github actions" />
   </component>
 </project>
