@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bf00654-b894-44ad-9266-463bf88b954e" name="Changes" comment="add sonar analysis">
+    <list default="true" id="5bf00654-b894-44ad-9266-463bf88b954e" name="Changes" comment="Fix sonar analysis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,7 +155,7 @@
       <updated>1669114585521</updated>
       <workItem from="1669114586737" duration="35651000" />
       <workItem from="1669625378223" duration="339000" />
-      <workItem from="1669632172270" duration="4759000" />
+      <workItem from="1669632172270" duration="5919000" />
     </task>
     <task id="LOCAL-00001" summary="add backend">
       <created>1669114990146</created>
@@ -213,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669636640927</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fix sonar analysis">
+      <created>1669640760842</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669640760842</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,6 +261,7 @@
     <MESSAGE value="add IntegrationTest" />
     <MESSAGE value="add ci pipeline using github actions" />
     <MESSAGE value="add sonar analysis" />
-    <option name="LAST_COMMIT_MESSAGE" value="add sonar analysis" />
+    <MESSAGE value="Fix sonar analysis" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix sonar analysis" />
   </component>
 </project>
