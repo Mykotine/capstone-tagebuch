@@ -21,7 +21,7 @@ public class NoteService {
     }
 
     public Note saveNote(Note note) {
-        return noteRepository.save(note);
+        return noteRepository.save(addNewNote(note));
     }
 
     public void deleteNote(String id) {
