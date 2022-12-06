@@ -1,18 +1,30 @@
-import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
-import axios from "axios";
+import React, {ChangeEvent, useState, KeyboardEvent, useEffect} from 'react';
+import axios, {head} from "axios";
 import dayjs from "dayjs";
 import {Button, TextField} from "@mui/material";
-import './css/index.css';
+import './index.css';
 import { styled } from '@mui/material/styles';
-
-
-
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 
 
 function App() {
 
-  const [note, setNote] = useState("");
+    const [getNoteList, setNoteList] = useState("");
+
+
+    const getAllNotes = () => {
+        axios.get("/home")
+            .then((response) => {return response.data
+            }).catch((error) => console.log("[Error von GET] =>" + error))
+            .then((data) => {
+            setNoteList(data)
+        })
+    }
+
+
+  const [note, setNewNote] = useState("");
 
   const addNewNote = () => {
       axios.post("/api/myNotes", {text: note, date: dayjs().format("DD-MM-YYYY HH:mm:ss")})
@@ -38,11 +50,6 @@ function App() {
       }
 
     }
-
-
-
-
-
     return (
         <StyledContainer>
             <header>

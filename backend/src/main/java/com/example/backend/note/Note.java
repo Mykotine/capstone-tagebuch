@@ -1,11 +1,21 @@
 package com.example.backend.note;
 
-import lombok.With;
+
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 
-@With
 
-public record Note(String id,
-                   String text,
-                   String date) {
+
+@Data
+public class Note{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    private String text;
+    private String tag;
+
 }

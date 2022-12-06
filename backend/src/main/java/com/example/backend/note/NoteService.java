@@ -12,8 +12,7 @@ public class NoteService {
     private final NoteRepository noteRepository;
 
     public Note addNewNote(Note note){
-        String newUuid = NoteUtil.generateUuid();
-        return new Note(newUuid, note.text(), note.date());
+            return new Note();
     }
 
     public List<Note> getAllNotes(){

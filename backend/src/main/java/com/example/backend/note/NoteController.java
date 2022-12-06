@@ -2,12 +2,14 @@ package com.example.backend.note;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 
 public class NoteController {
 
@@ -17,22 +19,27 @@ public class NoteController {
         this.noteService = noteService;
     }
 
-    @PostMapping("myNotes")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public Note addNote(@Valid @RequestBody Note newNote) {
-    return noteService.saveNote(newNote);
+    @GetMapping("/home")
+    public String getNewNote(@RequestParam(name="new_Note", required=false, defaultValue="your stories") String newNote, Model model) {
+        model.addAttribute("new_Note", "this is your first note!");
+        return "home";
     }
 
-    @PutMapping
-    public ResponseEntity<Note> updateNote(@PathVariable String id, @Valid @RequestBody Note note){
-        boolean noteExists = noteService.checkIfExist(id);
 
-        Note toUpDate = note.withId(id);
-        Note updatedNote = noteService.saveNote(toUpDate);
-
-        return noteExists ?
-                new ResponseEntity<>(updatedNote, HttpStatus.OK) :
-                new ResponseEntity<>(updatedNote, HttpStatus.CREATED);
-
+    @GetMapping
+    public String main(Map<String, Object> model) {
+    Iterable<Note> notes = noteService.getAllNotes();
+    model.put("notes", notes);
+    return "main";
     }
+
+    @PostMapping
+    public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model){
+        Note note = new Note();
+        noteService.saveNote(note);
+        Iterable<Note> notes = noteService.getAllNotes();
+        return "main";
+    }
+
 }
+
