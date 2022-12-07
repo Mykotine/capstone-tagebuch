@@ -1,5 +1,6 @@
-package com.example.backend.note;
+package com.example.backend.controller;
 
+import com.example.backend.domain.Note;
 import com.example.backend.repos.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @Controller
-public class NoteController {
+public class MainController {
     @Autowired
     private NoteRepository noteRepository;
 

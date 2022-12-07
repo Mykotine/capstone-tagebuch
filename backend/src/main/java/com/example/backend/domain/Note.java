@@ -1,4 +1,4 @@
-package com.example.backend.note;
+package com.example.backend.domain;
 
 
 import lombok.Data;

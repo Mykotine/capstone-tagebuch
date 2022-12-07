@@ -1,6 +1,6 @@
 package com.example.backend.repos;
 
-import com.example.backend.note.Note;
+import com.example.backend.domain.Note;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
