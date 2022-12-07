@@ -14,24 +14,24 @@ public class NoteController {
 
     @GetMapping("/")
     public String home(Map<String, Object>  model) {
-
         return "home";
     }
+    String noteStr = "notes";
 
 
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
         Iterable<Note> notes = noteRepository.findAll();
-    model.put("notes", notes);
+    model.put(noteStr, notes);
     return "main";
     }
 
-    @PostMapping
+    @PostMapping("/main")
     public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model){
         Note note = new Note(text, tag);
         noteRepository.save(note);
         Iterable<Note> notes = noteRepository.findAll();
-        model.put("notes", notes);
+        model.put(noteStr, notes);
         return "main";
     }
 
@@ -44,7 +44,7 @@ public class NoteController {
         } else {
             notes = noteRepository.findAll();
         }
-        model.put("notes", notes);
+        model.put(noteStr, notes);
         return "main";
     }
 
