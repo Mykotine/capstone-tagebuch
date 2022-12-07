@@ -1,43 +1,50 @@
 package com.example.backend.note;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import com.example.backend.repos.NoteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
-@RestController
-@RequestMapping("/")
-
+@Controller
 public class NoteController {
+    @Autowired
+    private NoteRepository noteRepository;
 
-    private final NoteService noteService;
+    @GetMapping("/")
+    public String home(Map<String, Object>  model) {
 
-    public NoteController(NoteService noteService){
-        this.noteService = noteService;
-    }
-
-    @GetMapping("/home")
-    public String getNewNote(@RequestParam(name="new_Note", required=false, defaultValue="your stories") String newNote, Model model) {
-        model.addAttribute("new_Note", "this is your first note!");
         return "home";
     }
 
 
-    @GetMapping
+    @GetMapping("/main")
     public String main(Map<String, Object> model) {
-    Iterable<Note> notes = noteService.getAllNotes();
+        Iterable<Note> notes = noteRepository.findAll();
     model.put("notes", notes);
     return "main";
     }
 
     @PostMapping
     public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model){
-        Note note = new Note();
-        noteService.saveNote(note);
-        Iterable<Note> notes = noteService.getAllNotes();
+        Note note = new Note(text, tag);
+        noteRepository.save(note);
+        Iterable<Note> notes = noteRepository.findAll();
+        model.put("notes", notes);
+        return "main";
+    }
+
+    @PostMapping("filter")
+    public String filter(@RequestParam String filter, Map<String, Object> model){
+        Iterable<Note> notes;
+
+        if (filter !=null && !filter.isEmpty()){
+            notes = noteRepository.findByTag(filter);
+        } else {
+            notes = noteRepository.findAll();
+        }
+        model.put("notes", notes);
         return "main";
     }
 
