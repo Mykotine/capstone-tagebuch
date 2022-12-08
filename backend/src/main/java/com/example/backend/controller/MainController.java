@@ -1,20 +1,22 @@
 package com.example.backend.controller;
 
 import com.example.backend.domain.Note;
-import com.example.backend.repos.NoteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.backend.sevice.NoteService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @Controller
+@RequiredArgsConstructor
 public class MainController {
-    @Autowired
-    private NoteRepository noteRepository;
+
+
+    private final NoteService noteService;
 
     @GetMapping("/")
-    public String home(Map<String, Object>  model) {
+    public String home() {
         return "home";
     }
     String noteStr = "notes";
@@ -22,18 +24,21 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
-        Iterable<Note> notes = noteRepository.findAll();
+        Iterable<Note> notes = noteService.getAllNotes();
     model.put(noteStr, notes);
     return "main";
     }
 
+
+
     @PostMapping("/main")
     public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model){
         Note note = new Note(text, tag);
-        noteRepository.save(note);
-        Iterable<Note> notes = noteRepository.findAll();
+        noteService.saveNote(note);
+        Iterable<Note> notes = noteService.getAllNotes();
         model.put(noteStr, notes);
         return "main";
+
     }
 
     @PostMapping("filter")
@@ -41,9 +46,9 @@ public class MainController {
         Iterable<Note> notes;
 
         if (filter !=null && !filter.isEmpty()){
-            notes = noteRepository.findByTag(filter);
+            notes = noteService.getFindByTag(filter);
         } else {
-            notes = noteRepository.findAll();
+            notes = noteService.getAllNotes();
         }
         model.put(noteStr, notes);
         return "main";
