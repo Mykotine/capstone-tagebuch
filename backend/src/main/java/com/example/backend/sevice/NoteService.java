@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -22,5 +23,25 @@ public class NoteService {
 
     public List<Note> getFindByTag(String tag){
         return noteRepository.getFindByTag(tag);
+    }
+
+    public Integer updateNoteById(Integer id, Note note) {
+        Iterable<Note> notes = noteRepository.findAll();
+        for(Note newNote : notes){
+            if(note.getId().equals(id)){
+                noteRepository.save(newNote);
+                return note.getId();
+            }
+        }
+        throw new NoSuchElementException("No notes was found with such id");
+    }
+
+    public boolean isNoteExisting(Integer id) {
+        return noteRepository.existsById(id.longValue());
+    }
+
+
+    public void deleteNote(Integer id) {
+        noteRepository.deleteById(id.longValue());
     }
 }
