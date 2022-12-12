@@ -3,18 +3,26 @@ package com.example.backend.controller;
 import com.example.backend.domain.Note;
 import com.example.backend.sevice.NoteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
 public class MainController {
-
-
     private final NoteService noteService;
+
+    @Value("${upload.path}")
+    private String uploadPath;
+
 
     @GetMapping("/")
     public String home() {
@@ -33,8 +41,26 @@ public class MainController {
 
 
     @PostMapping("/main")
-    public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model){
+    public String add(@RequestParam String text,
+                      @RequestParam String tag, Map<String, Object> model,
+                      @RequestParam("file") MultipartFile file
+                      ) throws NullPointerException, IOException {
         Note note = new Note(text, tag);
+        if(file != null && !file.getOriginalFilename().isEmpty()){
+            File uploadDir = new File(uploadPath);
+
+            if (!uploadDir.exists()){
+                uploadDir.mkdir();
+            }
+            String uuidFile = UUID.randomUUID().toString();
+
+            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File((uploadPath + resultFilename)));
+
+            note.setFilename(resultFilename);
+        }
+
         noteService.saveNote(note);
         Iterable<Note> notes = noteService.getAllNotes();
         model.put(noteStr, notes);
@@ -52,6 +78,7 @@ public class MainController {
             notes = noteService.getAllNotes();
         }
         model.put(noteStr, notes);
+        model.put("filter", "");
         return "main";
     }
 
