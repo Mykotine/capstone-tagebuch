@@ -1,11 +1,14 @@
 package com.example.backend.controller;
 
 import com.example.backend.domain.Note;
+import com.example.backend.domain.User;
 import com.example.backend.sevice.NoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,20 +35,27 @@ public class MainController {
 
 
     @GetMapping("/main")
-    public String main(Map<String, Object> model) {
+    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
         Iterable<Note> notes = noteService.getAllNotes();
-    model.put(noteStr, notes);
+        if (filter !=null && !filter.isEmpty()){
+            notes = noteService.getFindByTag(filter);
+        } else {
+            notes = noteService.getAllNotes();
+        }
+    model.addAttribute(noteStr, notes);
+        model.addAttribute("filter", filter);
     return "main";
     }
 
 
 
     @PostMapping("/main")
-    public String add(@RequestParam String text,
+    public String add(@AuthenticationPrincipal User user,
+            @RequestParam String text,
                       @RequestParam String tag, Map<String, Object> model,
                       @RequestParam("file") MultipartFile file
-                      ) throws NullPointerException, IOException {
-        Note note = new Note(text, tag);
+                      ) throws IOException {
+        Note note = new Note(text, tag, user);
         if(file != null && !file.getOriginalFilename().isEmpty()){
             File uploadDir = new File(uploadPath);
 
@@ -66,20 +76,6 @@ public class MainController {
         model.put(noteStr, notes);
         return "main";
 
-    }
-
-    @PostMapping("filter")
-    public String filter(@RequestParam String filter, Map<String, Object> model){
-        Iterable<Note> notes;
-
-        if (filter !=null && !filter.isEmpty()){
-            notes = noteService.getFindByTag(filter);
-        } else {
-            notes = noteService.getAllNotes();
-        }
-        model.put(noteStr, notes);
-        model.put("filter", "");
-        return "main";
     }
 
     /*@PutMapping("/{id}")
