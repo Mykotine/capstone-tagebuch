@@ -4,6 +4,7 @@
 <@c.page>
 <div>
     <@l.logout />
+    <span><a href="/user">User list</a> </span>
 </div>
 <div>
     <form method="post" enctype="multipart/form-data">
@@ -26,12 +27,9 @@
     <span>${note.text}</span>
     <i>${note.tag}</i>
     <strong>${note.authorName}</strong>
-
-    <div>
-        <#if note.filename??>
+    <#if note.filename??>
         <img src="/img/${note.filename}">
     </#if>
-</div>
 </div>
 <#else>
 No notes

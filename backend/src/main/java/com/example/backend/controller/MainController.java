@@ -77,26 +77,5 @@ public class MainController {
         return "main";
 
     }
-
-    /*@PutMapping("/{id}")
-    public Integer updateNoteById(@PathVariable Integer id, @RequestBody Note note){
-        try{
-            if(note.getId().equals(id)){
-                return noteService.updateNoteById(id, note);
-            }
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        } catch (NoSuchElementException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @DeleteMapping("{id}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteNote(@PathVariable Integer id) {
-        if(noteService.isNoteExisting(id)){
-            noteService.deleteNote(id);
-        } else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No story with ID: " + id + " found" );
-    }*/
-
 }
 
