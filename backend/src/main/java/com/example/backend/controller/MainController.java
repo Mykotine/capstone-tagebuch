@@ -51,7 +51,7 @@ public class MainController {
 
     @PostMapping("/main")
     public String add(@AuthenticationPrincipal User user,
-            @RequestParam String text,
+                      @RequestParam String text,
                       @RequestParam String tag, Map<String, Object> model,
                       @RequestParam("file") MultipartFile file
                       ) throws IOException {
@@ -66,7 +66,7 @@ public class MainController {
 
             String resultFilename = uuidFile + "." + file.getOriginalFilename();
 
-            file.transferTo(new File((uploadPath + resultFilename)));
+            file.transferTo(new File((uploadPath + "/" + resultFilename)));
 
             note.setFilename(resultFilename);
         }
