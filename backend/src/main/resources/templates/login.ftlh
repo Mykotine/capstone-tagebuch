@@ -3,5 +3,6 @@
 
 
 <@c.page>
+    ${note?ifExists}
 <@l.login "/login" false/>
 </@c.page>
