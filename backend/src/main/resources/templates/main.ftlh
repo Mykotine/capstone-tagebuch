@@ -51,7 +51,9 @@
     </div>
 </div>
 <#else>
-No notes
+    <a class="btn btn-outline-secondary mt-5">
+        No stories yet :(...
+    </a>
 </#list>
 </div>
 </@c.page>
