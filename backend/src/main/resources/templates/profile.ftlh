@@ -14,7 +14,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label"> Email: </label>
                 <div class="col-sm-6">
-                    <input type="email" name="email" class="form-control" placeholder="enter your E-Mail" value="${email!''}" />
+                    <input type="email" name="email" class="form-control" placeholder="enter your E-Mail" value="${email!''}"/>
                 </div>
             </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>

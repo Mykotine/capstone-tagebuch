@@ -25,7 +25,7 @@ public class NoteService {
         return noteRepository.getFindByTag(tag);
     }
 
-    public Long updateNoteById(Long id, Note note) {
+    public Long updateNoteById(Integer id, Note note) {
         Iterable<Note> notes = noteRepository.findAll();
         for(Note newNote : notes){
             if(note.getId().equals(id)){

@@ -9,17 +9,10 @@ import javax.persistence.*;
 @Entity
 @Data
 public class Note {
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @javax.persistence.Id
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     private String text;
@@ -60,5 +53,12 @@ public class Note {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

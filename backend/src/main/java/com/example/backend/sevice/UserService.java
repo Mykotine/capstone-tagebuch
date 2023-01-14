@@ -1,13 +1,16 @@
 package com.example.backend.sevice;
 
 
+import com.example.backend.config.BeanConfig;
 import com.example.backend.domain.Role;
 import com.example.backend.domain.User;
 import com.example.backend.repos.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -20,13 +23,16 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final MailSender mailSender;
 
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username);
+    }
+
     public User getFindByUserName(String username){
         return userRepository.findByUsername(username);
     }
 
-    public User saveUser(User user){
-        return userRepository.save(user);
-    }
 
     public boolean addUser(User user) {
         User userFromDb = userRepository.findByUsername(user.getUsername());
@@ -36,6 +42,7 @@ public class UserService implements UserDetailsService {
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
+        user.setPassword(BeanConfig.getPasswordEncoder().encode(user.getPassword()));
 
         userRepository.save(user);
 
@@ -57,11 +64,6 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username);
-    }
-
     public boolean activateUser(String code) {
         User user = userRepository.findByActivationCode(code);
 
@@ -78,8 +80,7 @@ public class UserService implements UserDetailsService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
-
-    public void saveUser(User user, String username, Map<String, String> form) {
+    public void saveUser(User user, String username, Map<String, String> form){
         user.setUsername(username);
 
         Set<String> roles = Arrays.stream(Role.values())
@@ -99,24 +100,23 @@ public class UserService implements UserDetailsService {
     public void updateProfile(User user, String password, String email) {
         String userEmail = user.getEmail();
 
-        boolean isEmailChanged = (email !=null && !email.equals(userEmail)) || 
-                (userEmail != null && !userEmail.equals(email));
-        
-        if (isEmailChanged){
+        boolean isEmailChanged  = (email != null && !email.equals(userEmail)) || (userEmail != null && !userEmail.equals(email));
+
+        if (isEmailChanged) {
             user.setEmail(email);
-            
-            if (!StringUtils.isEmpty(email)){
+
+            if(StringUtils.isEmpty(email)) {
                 user.setActivationCode(UUID.randomUUID().toString());
             }
         }
-        
+
         if (!StringUtils.isEmpty(password)){
             user.setPassword(password);
         }
-        
+
         userRepository.save(user);
 
-        if (isEmailChanged) {
+        if(isEmailChanged) {
             sendMessage(user);
         }
     }
