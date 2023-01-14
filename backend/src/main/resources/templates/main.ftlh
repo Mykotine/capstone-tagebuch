@@ -13,7 +13,7 @@
 <a class="btn btn-primary mb-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
     Add new story
 </a>
-<div class="collapse" id="collapseExample">
+<div class="collapse <#if note??>show</#if>" id="collapseExample">
     <div class="input-group mb-2">
         <form method="post" enctype="multipart/form-data">
             <p class="card text-break" style="width: 70rem; height: 18rem;">
@@ -26,7 +26,13 @@
                 </#if>
             </p>
             <div class="input-group mb-2">
-                <input type="text" name="tag" class="form-control" placeholder="tag"/>
+                <input type="text" class="form-control"
+                       value="<#if note??>${note.tag}</#if>" name="tag" placeholder="tag">
+                <#if textError??>
+                    <div id="validationServer03Feedback" class="invalid-feedback">
+                        ${tagError}
+                    </div>
+                </#if>
             </div>
             <div class="input-group mb-2">
                 <div class="custom-file">

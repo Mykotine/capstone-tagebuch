@@ -84,6 +84,8 @@ public class MainController {
                 note.setFilename(resultFilename);
             }
 
+            model.addAttribute("note", null);
+
             noteService.saveNote(note);
         }
         Iterable<Note> notes = noteService.getAllNotes();

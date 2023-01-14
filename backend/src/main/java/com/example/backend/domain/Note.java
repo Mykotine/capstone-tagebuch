@@ -19,6 +19,7 @@ public class Note {
     @NotBlank(message = "Please fill the message")
     @Length(max = 2048, message = "Message to long (more than 2kB)")
     private String text;
+    @Length(max = 255, message = "Message to long (more than 255)")
     private String tag;
 
 
