@@ -2,9 +2,11 @@ package com.example.backend.domain;
 
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Data
@@ -14,7 +16,8 @@ public class Note {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-
+    @NotBlank(message = "Please fill the message")
+    @Length(max = 2048, message = "Message to long (more than 2kB)")
     private String text;
     private String tag;
 

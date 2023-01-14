@@ -17,7 +17,13 @@
     <div class="input-group mb-2">
         <form method="post" enctype="multipart/form-data">
             <p class="card text-break" style="width: 70rem; height: 18rem;">
-                <input type="text" name="text" placeholder="add your story"/>
+                <input type="text" class="form-control ${(textError??)?string('is-invalid', '')}" id="validationServer03" aria-describedby="validationServer03Feedback" required
+                       value="<#if note??>${note.text}</#if>" name="text"  placeholder="add your story"/>
+                <#if textError??>
+                <div id="validationServer03Feedback" class="invalid-feedback">
+                    ${textError}
+                </div>
+                </#if>
             </p>
             <div class="input-group mb-2">
                 <input type="text" name="tag" class="form-control" placeholder="tag"/>
